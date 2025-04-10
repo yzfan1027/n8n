@@ -1,0 +1,13 @@
+name: Trigger n8n Weather Webhook
+
+on:
+  schedule:
+    - cron: '50 22 * * *'  # 台灣時間早上 6 點（UTC+0 的 22 點）
+  workflow_dispatch:  # 也可以手動執行
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call n8n webhook
+        run: curl -s "https://n8n-service-t8or.onrender.com/webhook/weather-alert"
